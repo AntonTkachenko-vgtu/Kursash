@@ -4,11 +4,11 @@
 #include <locale.h>
 #include <malloc.h>
 /*
-* Константа для настройки работы приложения
+* РљРѕРЅСЃС‚Р°РЅС‚Р° РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё СЂР°Р±РѕС‚С‹ РїСЂРёР»РѕР¶РµРЅРёСЏ
 */
 #define LENGTH  9 
 /*
-* Константы для отображения поля
+* РљРѕРЅСЃС‚Р°РЅС‚С‹ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕР»СЏ
 */
 #define UP_BORDER_FOR5COMPL "%d %d|%d %d|%d"    
 #define LOW_BORDER_FOR5COMPL "%d|%d %d|%d %d"
@@ -33,29 +33,34 @@ void main() {
 	menuGame();
 }
 
- void menuGame() {
-	 int** arr = NULL;
-	 int flag = 1, def, complex = 0;
-	 while (flag) {
-		 printf("*********************************\n");
-		 printf("* Выберите действие:\t\t*\n* 1. Играть\t\t\t*\n* 2. Изменить поле\t\t*\n* 3. Загрузить последние игры\t*\n* 4. Правила игры\t\t*\n* 5. Выйти\t\t\t*\n");
-		 printf("*********************************\n");
-		 scanf("%d", &def);
-		 if (def == 1) {
-			 playGame(arr, complex);
-		 } else if (def == 2) {
-			 printf("Выберите какую сложность поля вы хотите изменить: 1, 2 или 3: ");
-			 scanf("%d", &complex);
-			 arr = changePole(choseArray(complex), complex);
-		 } else if (def == 3) {
-			 printResultInFile();
-		 } else if (def == 4) {
-			 printf("Кирпичи («Bricks») - разновидность логической головоломки.\nНеобходимо заполнить сетку цифрами так, чтобы в каждой строке и в каждом столбце они не повторялись.\nНа каждом кирпиче одна цифра - чётная, другая - нечётная.\n");
-		 } else if (def == 5) {
-			 flag = 0;
-		 } else printf("Некорректный ввод\n");
-	 }
- }
+void menuGame() {
+	int** arr = NULL;
+	int flag = 1, def, complex = 0;
+	while (flag) {
+		printf("*********************************\n");
+		printf("* Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ:\t\t*\n* 1. РРіСЂР°С‚СЊ\t\t\t*\n* 2. РР·РјРµРЅРёС‚СЊ РїРѕР»Рµ\t\t*\n* 3. Р—Р°РіСЂСѓР·РёС‚СЊ РїРѕСЃР»РµРґРЅРёРµ РёРіСЂС‹\t*\n* 4. РџСЂР°РІРёР»Р° РёРіСЂС‹\t\t*\n* 5. Р’С‹Р№С‚Рё\t\t\t*\n");
+		printf("*********************************\n");
+		scanf("%d", &def);
+		if (def == 1) {
+			playGame(arr, complex);
+		}
+		else if (def == 2) {
+			printf("Р’С‹Р±РµСЂРёС‚Рµ РєР°РєСѓСЋ СЃР»РѕР¶РЅРѕСЃС‚СЊ РїРѕР»СЏ РІС‹ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ: 1, 2 РёР»Рё 3: ");
+			scanf("%d", &complex);
+			arr = changePole(choseArray(complex), complex);
+		}
+		else if (def == 3) {
+			printResultInFile();
+		}
+		else if (def == 4) {
+			printf("РљРёСЂРїРёС‡Рё (В«BricksВ») - СЂР°Р·РЅРѕРІРёРґРЅРѕСЃС‚СЊ Р»РѕРіРёС‡РµСЃРєРѕР№ РіРѕР»РѕРІРѕР»РѕРјРєРё.\nРќРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїРѕР»РЅРёС‚СЊ СЃРµС‚РєСѓ С†РёС„СЂР°РјРё С‚Р°Рє, С‡С‚РѕР±С‹ РІ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ Рё РІ РєР°Р¶РґРѕРј СЃС‚РѕР»Р±С†Рµ РѕРЅРё РЅРµ РїРѕРІС‚РѕСЂСЏР»РёСЃСЊ.\nРќР° РєР°Р¶РґРѕРј РєРёСЂРїРёС‡Рµ РѕРґРЅР° С†РёС„СЂР° - С‡С‘С‚РЅР°СЏ, РґСЂСѓРіР°СЏ - РЅРµС‡С‘С‚РЅР°СЏ.\n");
+		}
+		else if (def == 5) {
+			flag = 0;
+		}
+		else printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ\n");
+	}
+}
 
 void buildBorder(int** arr, int length) {
 	printf("   ");
@@ -69,19 +74,18 @@ void buildBorder(int** arr, int length) {
 	printf("\n");
 	for (int i = 0; i < length; i++) {
 		printf("%d| ", i);
-		for (int j = 0; j < 1; j++) {
 			if (i % 2 == 0) {
-				if(length == 5) printf(UP_BORDER_FOR5COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4]);
-				else if(length == 7) printf(UP_BORDER_FOR7COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6]);
-				else if(length == 9) printf(UP_BORDER_FOR9COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6], arr[i][j + 7],arr[i][j + 8]);
-				printf("\n");
-			} else {
-				if (length == 5)printf(LOW_BORDER_FOR5COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4]);
-				else if (length == 7)printf(LOW_BORDER_FOR7COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6]);
-				else if (length == 9)printf(LOW_BORDER_FOR9COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6], arr[i][j + 7], arr[i][j + 8]);
+				if (length == 5) printf(UP_BORDER_FOR5COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4]);
+				else if (length == 7) printf(UP_BORDER_FOR7COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6]);
+				else if (length == 9) printf(UP_BORDER_FOR9COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6], arr[i][7], arr[i][8]);
 				printf("\n");
 			}
-		}
+			else {
+				if (length == 5)printf(LOW_BORDER_FOR5COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4]);
+				else if (length == 7)printf(LOW_BORDER_FOR7COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6]);
+				else if (length == 9)printf(LOW_BORDER_FOR9COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6], arr[i][7], arr[i][8]);
+				printf("\n");
+			}
 	}
 }
 
@@ -93,7 +97,7 @@ int** choseArray(int complex) {
 				{ 1, 0, 3, 0, 0},
 				{ 0, 3, 0, 0, 0},
 				{ 0, 0, 4, 0, 1},
-				};
+	};
 	int arr7[7][7] = {
 				{ 4, 0, 0, 6, 0, 0, 7},
 				{ 0, 4, 0, 3, 0, 5, 0},
@@ -102,7 +106,7 @@ int** choseArray(int complex) {
 				{ 0, 3, 0, 0, 0, 4, 0},
 				{ 0, 2, 0, 7, 0, 1, 0},
 				{ 7, 0, 0, 1, 0, 0, 3},
-				};
+	};
 	int arr9[9][9] = {
 				{ 5, 0, 0, 0, 0, 0, 4, 9, 0 },
 				{ 0, 0, 7, 0, 0, 0, 8, 0, 0 },
@@ -113,38 +117,20 @@ int** choseArray(int complex) {
 				{ 0, 0, 8, 0, 4, 0, 0, 0, 5 },
 				{ 0, 0, 4, 0, 0, 0, 1, 0, 0 },
 				{ 0, 9, 5, 0, 0, 0, 0, 0, 1 },
-				};
-	if (complex == 1 || complex == 5) {
-		arr = (int**)malloc(5 * sizeof(int*));
-		for (int i = 0; i < 5; i++) {
-			arr[i] = (int*)malloc(5 * sizeof(int));
-			for (int j = 0; j < 5; j++) {
-				arr[i][j] = arr5[i][j];
-			}
+	};
+	if (complex == 1) complex = 5;
+	else if (complex == 2) complex = 7;
+	else if (complex == 3) complex = 9;
+	arr = (int**)malloc(complex * sizeof(int*));
+	for (int i = 0; i < complex; i++) {
+		arr[i] = (int*)malloc(complex * sizeof(int));
+		for (int j = 0; j < complex; j++) {
+			if (complex == 5) arr[i][j] = arr5[i][j];
+			else if (complex == 7) arr[i][j] = arr7[i][j];
+			else if (complex == 9) arr[i][j] = arr9[i][j];
 		}
-		return arr;
 	}
-	else if (complex == 2 || complex == 7) {
-		arr = (int**)malloc(7 * sizeof(int*));
-		for (int i = 0; i < 7; i++) {
-			arr[i] = (int*)malloc(7 * sizeof(int));
-			for (int j = 0; j < 7; j++) {
-				arr[i][j] = arr7[i][j];
-
-			}
-		}
-		return arr;
-	}
-	else if (complex == 3 || complex == 9) {
-		arr = (int**)malloc(9 * sizeof(int*));
-		for (int i = 0; i < 9; i++) {
-			arr[i] = (int*)malloc(9 * sizeof(int));
-			for (int j = 0; j < 9; j++) {
-				arr[i][j] = arr9[i][j];
-			}
-		}
-		return arr;
-	}
+	return arr;
 }
 
 int** changePole(int** arr, int complex) {
@@ -155,17 +141,17 @@ int** changePole(int** arr, int complex) {
 	while (flag) {
 		int a, b;
 		buildBorder(arr, complex);
-		printf("Какой элемент необходимо изменить? Или введите -1, чтобы выйти\n*Пример ввода:01 (число)\nВведите индекс элемета:");
+		printf("РљР°РєРѕР№ СЌР»РµРјРµРЅС‚ РЅРµРѕР±С…РѕРґРёРјРѕ РёР·РјРµРЅРёС‚СЊ? РР»Рё РІРІРµРґРёС‚Рµ -1, С‡С‚РѕР±С‹ РІС‹Р№С‚Рё\n*РџСЂРёРјРµСЂ РІРІРѕРґР°:01 (С‡РёСЃР»Рѕ)\nР’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ СЌР»РµРјРµС‚Р°:");
 		scanf("%d", &a);
 		if (a == -1) {
 			flag = 0;
 			break;
 		}
-		
-		printf("Введите новое значение: ");
+
+		printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ");
 		scanf("%d", &b);
 		if (b > 9) {
-			printf("Некорректное число.\n");
+			printf("РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ.\n");
 		}
 		else {
 			arr[a / 10][a % 10] = b;
@@ -176,65 +162,71 @@ int** changePole(int** arr, int complex) {
 
 int changeComplex(int** arr, int oldComplex) {
 	int complex;
-	printf("Выберите сложность:\n 1 - поле размером 5 на 5\n 2 - поле размером 7 на 7\n 3 - поле размером 9 на 9\n");
+	printf("Р’С‹Р±РµСЂРёС‚Рµ СЃР»РѕР¶РЅРѕСЃС‚СЊ:\n 1 - РїРѕР»Рµ СЂР°Р·РјРµСЂРѕРј 5 РЅР° 5\n 2 - РїРѕР»Рµ СЂР°Р·РјРµСЂРѕРј 7 РЅР° 7\n 3 - РїРѕР»Рµ СЂР°Р·РјРµСЂРѕРј 9 РЅР° 9\n");
 	scanf("%d", &complex);
-	if (oldComplex == 1 &&  complex == 1) {
+	if (oldComplex == 1 && complex == 1) {
 		buildBorder(arr, 5);
-	} else if (oldComplex == 2 && complex == 2) {
+	}
+	else if (oldComplex == 2 && complex == 2) {
 		buildBorder(arr, 7);
-	} else if (oldComplex == 3 && complex == 3) {
+	}
+	else if (oldComplex == 3 && complex == 3) {
 		buildBorder(arr, 9);
-	} else if (complex == 1) {
-		buildBorder(choseArray(1), 5);
+	}
+	else if (complex == 1) {
+		buildBorder(choseArray(complex), 5);
 		return 5;
-	} else if (complex == 2) {
-		buildBorder(choseArray(2), 7);
+	}
+	else if (complex == 2) {
+		buildBorder(choseArray(complex), 7);
 		return 7;
-	} else if (complex == 3) {
-		buildBorder(choseArray(3), 9);
+	}
+	else if (complex == 3) {
+		buildBorder(choseArray(complex), 9);
 		return 9;
-	} else printf("Некорректный ввод");
+	}
+	else printf("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ");
 }
 
 void playGame(int** arr, int oldComplex) {
 	int complex = changeComplex(arr, oldComplex);
 	int** arr1 = arr;
-	int action,a, b, flag = 1, result;
-	if (oldComplex == 1 && complex == 5) arr = arr;
-	else if (oldComplex == 2 && complex == 7) arr = arr;
-	else if (oldComplex == 3 && complex == 9)arr = arr;
+	int action, a, b, flag = 1, result;
+	if ((oldComplex == 1 && complex == 5)|| (oldComplex == 2 && complex == 7) || (oldComplex == 3 && complex == 9)) arr = arr;
 	else {
 		arr = choseArray(complex);
 		arr1 = choseArray(complex);
 	};
-	printf("\n***Вы начали игру***\n\nНеобходимо заполнить ТОЛЬКО ячейки, в которых содержится ""0""\n");
+	printf("\n***Р’С‹ РЅР°С‡Р°Р»Рё РёРіСЂСѓ***\n\nРќРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїРѕР»РЅРёС‚СЊ РўРћР›Р¬РљРћ СЏС‡РµР№РєРё, РІ РєРѕС‚РѕСЂС‹С… СЃРѕРґРµСЂР¶РёС‚СЃСЏ ""0""\n");
 	while (flag) {
 		printf("\n");
 		buildBorder(arr, complex);
-		printf("Какой элемент необходимо изменить? Или введите -1, чтобы закончить игру, или -2 если вы закончили игру и хотите посмотреть результат\n*Пример ввода:01 (число), где 0 - строка, 1 - столбец\nВведите индекс элемета:");
+		printf("РљР°РєРѕР№ СЌР»РµРјРµРЅС‚ РЅРµРѕР±С…РѕРґРёРјРѕ РёР·РјРµРЅРёС‚СЊ? РР»Рё РІРІРµРґРёС‚Рµ -1, С‡С‚РѕР±С‹ Р·Р°РєРѕРЅС‡РёС‚СЊ РёРіСЂСѓ, РёР»Рё -2 РµСЃР»Рё РІС‹ Р·Р°РєРѕРЅС‡РёР»Рё РёРіСЂСѓ Рё С…РѕС‚РёС‚Рµ РїРѕСЃРјРѕС‚СЂРµС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚\n*РџСЂРёРјРµСЂ РІРІРѕРґР°:01 (С‡РёСЃР»Рѕ), РіРґРµ 0 - СЃС‚СЂРѕРєР°, 1 - СЃС‚РѕР»Р±РµС†\nР’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ СЌР»РµРјРµС‚Р°:");
 		scanf("%d", &a);
 		if (a == -1) {
 			flag = 0;
-			printf("Вы закончили игру.\n");
+			printf("Р’С‹ Р·Р°РєРѕРЅС‡РёР»Рё РёРіСЂСѓ.\n");
 			break;
-		} else if (a == -2) {
+		}
+		else if (a == -2) {
 			flag = 0;
 			break;
 		}
-		printf("Введите новое значение: ");
+		printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ: ");
 		scanf("%d", &b);
 		if (b > complex) {
-			printf("\n***Некорректное число***\n");
-		} else {
-			if (arr1[a / 10][a % 10] == 0) arr[a / 10][a % 10] = b;  // проверка только по исходному массиву
-			else printf("\n***Эту ячейку нельзя изменить***\n");
+			printf("\n***РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ***\n");
+		}
+		else {
+			if (arr1[a / 10][a % 10] == 0) arr[a / 10][a % 10] = b;  // РїСЂРѕРІРµСЂРєР° С‚РѕР»СЊРєРѕ РїРѕ РёСЃС…РѕРґРЅРѕРјСѓ РјР°СЃСЃРёРІСѓ
+			else printf("\n***Р­С‚Сѓ СЏС‡РµР№РєСѓ РЅРµР»СЊР·СЏ РёР·РјРµРЅРёС‚СЊ***\n");
 		}
 	}
 	if (a == -2) {
 		result = checkResult(arr, complex);
-		if (result == 1) printf("***Вы проиграли***\n");
-		else printf("***Вы выиграли***\n");
-		printf("Выберите действие\n1. Сохранить результат\n2. Выйти\n");
+		if (result == 1) printf("***Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё***\n");
+		else printf("***Р’С‹ РІС‹РёРіСЂР°Р»Рё***\n");
+		printf("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ\n1. РЎРѕС…СЂР°РЅРёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚\n2. Р’С‹Р№С‚Рё\n");
 		scanf("%d", &action);
 		if (action == 1)writeResultInFIle(arr, complex, result);
 	}
@@ -243,39 +235,37 @@ void playGame(int** arr, int oldComplex) {
 int writeResultInFIle(int** arr, int complex, int result) {
 	char fname[20] = "result.txt";
 	FILE* out;
-	puts("Сохранение результата в файл...");
+	puts("РЎРѕС…СЂР°РЅРµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ С„Р°Р№Р»...");
 	if ((out = fopen(fname, "a")) == NULL) {
-		printf("Ошибка открытия файла для записи");
-			return 1;
+		printf("РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° РґР»СЏ Р·Р°РїРёСЃРё");
+		return 1;
 	}
 	fprintf(out, "   ");
 	for (int i = 0; i < complex; i++) {
-		fprintf(out,"%d ", i);
+		fprintf(out, "%d ", i);
 	}
-	fprintf(out,"\n");
+	fprintf(out, "\n");
 	for (int i = 0; i < complex * 2 + 2; i++) {
 		fprintf(out, "-");
 	}
-	fprintf(out,"\n");
+	fprintf(out, "\n");
 	for (int i = 0; i < complex; i++) {
-		fprintf(out,"%d| ", i);
-		for (int j = 0; j < 1; j++) {
+		fprintf(out, "%d| ", i);
 			if (i % 2 == 0) {
-				if (complex == 5) fprintf(out,UP_BORDER_FOR5COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4]);
-				if (complex == 7) fprintf(out, UP_BORDER_FOR7COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6]);
-				if (complex == 9) fprintf(out, UP_BORDER_FOR9COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6], arr[i][j + 7], arr[i][j + 8]);
-				fprintf(out,"\n");
+				if (complex == 5) fprintf(out,UP_BORDER_FOR5COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4]);
+				else if (complex == 7) fprintf(out, UP_BORDER_FOR7COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6]);
+				else if (complex == 9) fprintf(out, UP_BORDER_FOR9COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6], arr[i][7], arr[i][8]);
+				fprintf(out, "\n");
 			}
 			else {
-				if (complex == 5)fprintf(out, LOW_BORDER_FOR5COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4]);
-				if (complex == 7)fprintf(out, LOW_BORDER_FOR7COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6]);
-				if (complex == 9)fprintf(out, LOW_BORDER_FOR9COMPL, arr[i][j], arr[i][j + 1], arr[i][j + 2], arr[i][j + 3], arr[i][j + 4], arr[i][j + 5], arr[i][j + 6], arr[i][j + 7], arr[i][j + 8]);
-				fprintf(out,"\n");
+				if (complex == 5)fprintf(out, LOW_BORDER_FOR5COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4]);
+				else if (complex == 7)fprintf(out, LOW_BORDER_FOR7COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6]);
+				else if (complex == 9)fprintf(out, LOW_BORDER_FOR9COMPL, arr[i][0], arr[i][1], arr[i][2], arr[i][3], arr[i][4], arr[i][5], arr[i][6], arr[i][7], arr[i][8]);
+				fprintf(out, "\n");
 			}
-		}
 	}
-	if (result == 1) fprintf(out, "Результат: Поражение\n");
-	if (result == 2) fprintf(out, "Результат: Победа\n");
+	if (result == 1) fprintf(out, "Р РµР·СѓР»СЊС‚Р°С‚: РџРѕСЂР°Р¶РµРЅРёРµ\n");
+	if (result == 2) fprintf(out, "Р РµР·СѓР»СЊС‚Р°С‚: РџРѕР±РµРґР°\n");
 	fclose(out);
 	return 0;
 }
@@ -294,7 +284,7 @@ int printResultInFile() {
 		}
 		fclose(fp);
 	}
-	if (flag == 0) printf("\n***Вы ещё не играли***\n\n");
+	if (flag == 0) printf("\n***Р’С‹ РµС‰С‘ РЅРµ РёРіСЂР°Р»Рё***\n\n");
 	return 0;
 }
 
@@ -317,20 +307,24 @@ int checkResult(int** arr, int complexe) {
 			if (i % 2 == 0) {
 				if (j == complexe - 1) {
 					if (isSave(arr, i, j, arr[i][j], complexe) == 1) return 1;
-				} else if (isSave(arr, i, j, arr[i][j], complexe) == 1) return 1;
+				}
+				else if (isSave(arr, i, j, arr[i][j], complexe) == 1) return 1;
 				else if ((arr[i][j + 1] % 2 == 0 && arr[i][j] % 2 == 0) || (arr[i][j + 1] % 2 != 0 && arr[i][j] % 2 != 0)) {
 					return 1;
 				}
-			} else {
+			}
+			else {
 				if (j == 0) {
 					if (isSave(arr, i, j, arr[i][j], complexe) == 1) {
 						return 1;
-					} else {
+					}
+					else {
 						j++;
 						if ((arr[i][j + 1] % 2 == 0 && arr[i][j] % 2 == 0) || (arr[i][j + 1] % 2 != 0 && arr[i][j] % 2 != 0))
 							return 1;
 					}
-				} else if (isSave(arr, i, j, arr[i][j], complexe) == 1) return 1;
+				}
+				else if (isSave(arr, i, j, arr[i][j], complexe) == 1) return 1;
 				else if ((arr[i][j + 1] % 2 == 0 && arr[i][j] % 2 == 0) || (arr[i][j + 1] % 2 != 0 && arr[i][j] % 2 != 0)) {
 					return 1;
 				}
